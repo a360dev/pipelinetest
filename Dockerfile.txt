@@ -9,3 +9,4 @@ RUN NET LOCALGROUP "Administrators" "dockeruser" /ADD
 COPY start.ps1 .
 
 CMD powershell .\start.ps1
+
