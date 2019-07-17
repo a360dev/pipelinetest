@@ -54,8 +54,8 @@ try
     --work "$(if (Test-Path Env:AZP_WORK) { ${Env:AZP_WORK} } else { '_work' })" `
     --replace `
     --runAsService `
-    --windowsLogonAccount "win-6hl0rq3v852\administrator" `
-    --windowsLogonPassword "Sibiu4ever"
+    --windowsLogonAccount ${Env:WindowsLogon} `
+    --windowsLogonPassword ${Env:WindowsPassword}
 
   Write-Host "4. Running Azure Pipelines agent..." -ForegroundColor Cyan
 
