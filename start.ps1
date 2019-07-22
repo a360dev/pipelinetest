@@ -41,6 +41,21 @@ $wc.DownloadFile($packageUrl, "$(Get-Location)\agent.zip")
 
 Expand-Archive -Path "agent.zip" -DestinationPath "\azp\agent"
 
+
+
+
+
+
+Write-Host "Now installing AzureRM Module..." -ForegroundColor Cya
+Install-Module AzureRM
+Import-Module AzureRM
+
+Write-Host "Now installing AzureAD Module..." -ForegroundColor Cya
+Install-Module MSOnline
+Import-Module MSOnline
+
+
+
 try
 {
   Write-Host "3. Configuring Azure Pipelines agent..." -ForegroundColor Cyan
