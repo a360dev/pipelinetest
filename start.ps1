@@ -36,25 +36,22 @@ Write-Host $packageUrl
 
 Write-Host "2. Downloading and installing Azure Pipelines agent..." -ForegroundColor Cyan
 
-$wc = New-Object System.Net.WebClient
-$wc.DownloadFile($packageUrl, "$(Get-Location)\agent.zip")
 
-Expand-Archive -Path "agent.zip" -DestinationPath "\azp\agent"
+Write-Host "Now installing AzurePowerShell Module..." -ForegroundColor Cya
+Install-Module -Name AzureRM -AllowClobber
+Install-PackageProvider -Name NuGet -Force -Scope CurrentUser
+Install-Module -Name AzureRM -RequiredVersion 6.13.1 -Force -Scope CurrentUser -AllowClobber
 
-
-
-
-
-
-Write-Host "Now installing AzureRM Module..." -ForegroundColor Cya
-Install-Module AzureRM
-Import-Module AzureRM
 
 Write-Host "Now installing AzureAD Module..." -ForegroundColor Cya
 Install-Module MSOnline
 Import-Module MSOnline
 
 
+$wc = New-Object System.Net.WebClient
+$wc.DownloadFile($packageUrl, "$(Get-Location)\agent.zip")
+
+Expand-Archive -Path "agent.zip" -DestinationPath "\azp\agent"
 
 try
 {
@@ -73,6 +70,7 @@ try
     --windowsLogonPassword ${Env:WindowsPassword}
 
   Write-Host "4. Running Azure Pipelines agent..." -ForegroundColor Cyan
+
 
   .\run.cmd
 }
