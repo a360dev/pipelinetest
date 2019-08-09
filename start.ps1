@@ -37,13 +37,22 @@ Write-Host $packageUrl
 Write-Host "2. Downloading and installing Azure Pipelines agent..." -ForegroundColor Cyan
 
 
-Write-Host "Now installing AzurePowerShell Module..." -ForegroundColor Cya
+Write-Host "Now installing AzurePowerShell Module..." -ForegroundColor Cyan
+
+
+#Install Azure AZ Module 
+#Install-Module -Name Az -AllowClobber -Scope CurrentUser
+#Install-Module -Name Az -AllowClobber -Force
+
+
+#Install AzureRM Module
+Write-Host "Now installing AzureRM Module..." -ForegroundColor Cyan
 Install-Module -Name AzureRM -AllowClobber
 Install-PackageProvider -Name NuGet -Force -Scope CurrentUser
 Install-Module -Name AzureRM -RequiredVersion 6.13.1 -Force -Scope CurrentUser -AllowClobber
 
-
-Write-Host "Now installing AzureAD Module..." -ForegroundColor Cya
+#Install MS-Deploy Module
+Write-Host "Now installing AzureAD Module..." -ForegroundColor Cyan
 Install-Module MSOnline
 Import-Module MSOnline
 
